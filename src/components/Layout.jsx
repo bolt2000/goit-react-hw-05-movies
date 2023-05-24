@@ -2,7 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 export const Layout = () => {
   return (
-    <container>
+    <>
       <header>
         <ul>
           <li>
@@ -17,6 +17,6 @@ export const Layout = () => {
         <Outlet />
       </main>
       <footer>END</footer>
-    </container>
+    </>
   );
 };
