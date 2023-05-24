@@ -1,53 +1,90 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { getSearchMovie } from 'services/GetMoviesTrend';
+import { Audio } from 'react-loader-spinner';
 
 const SearchMovie = () => {
-  const [movies, setMovies] = useState(
-    [
-    // 'movie-1',
-    // 'movie-2',
-    // 'movie-3',
-    // 'movie-4',
-  ]
-  );
-
   const location = useLocation();
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieId = searchParams.get('movieId') ?? '';
-  
-  // console.log(searchParams);
-  // useEffect(() => {
-  //     console.log(movieId);
-  // }, [movieId]);
+
+  useEffect(() => {
+    if (movieId === '') {
+      return;
+    }
+    setMovies([]);
+    setIsLoading(true);
+
+    getSearchMovie(movieId).then(movies => {
+      setMovies(movies.results);
+
+      setIsLoading(false);
+      // console.log(movieId);
+    });
+  }, [movieId]);
 
   const updateQueryString = evt => {
-    const moviIdValue = evt.target.value;
-    if (moviIdValue === '') {
+    evt.preventDefault();
+    const movieIdValue = evt.target.value;
+    if (movieIdValue === '') {
       return setSearchParams({});
     }
-    setSearchParams({ movieId: moviIdValue });
+    setSearchParams({ movieId: movieIdValue });
+    // console.log(movieIdValue);
   };
 
-  const visibleMovies = movies.filter(movie => movie.includes(movieId));
+  // const hendleSubmit = e => {
+  //   e.preventDefault();
+  //   setMovies(movieId);
+  //   setMovies('');
+  // };
 
+  // const visibleMovies = movies.filter(movie => movie.includes(movieId));
 
   return (
-    <div>
-      <input value={movieId} type="text" onChange={updateQueryString} />
-      <button type="Submit" onClick={() => setSearchParams()}>--Search--</button>
-      <h3>Result search movie</h3>
-      <ul>
-        {visibleMovies.map(movie => {
-          return (
-            <li key={movie}>
-              <Link to={`${movie}`} state={{ from: location }}>
-                {movie}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      {isLoading && (
+        <Audio
+          className="true"
+          height="80"
+          width="80"
+          radius="9"
+          color="green"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
+      )}
+      <div>
+        <form
+          // onSubmit={hendleSubmit}
+        >
+          <input
+            value={movieId}
+            type="text"
+            onChange={updateQueryString}
+            // onSubmit={updateQueryString}
+            placeholder="Search movie"
+            autoComplete="off"
+          />
+          <button type="Submit">--Search--</button>
+          {/* <h3>Result search movie</h3> */}
+        </form>
+        <ul>
+          {movies.map(({ id, original_title, name }) => {
+            return (
+              <li key={id}>
+                <Link to={`${original_title}`} state={{ from: location }}>
+                  {original_title || name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 };
 
