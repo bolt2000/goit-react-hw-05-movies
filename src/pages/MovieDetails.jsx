@@ -11,16 +11,19 @@ const MovieDetails = () => {
 const location = useLocation();
 const [movie, setMovie] = useState({});
   const IMG_PATH = 'https://image.tmdb.org/t/p/original';
+  // const [params, setParams] = useSearchParams();
+  // setParams({id: '333333'});
 
+  // const movieId = setParams.get('movieId');
+  // console.log(movieId);
 
   const backLinkLocation = useRef(location.state?.from ?? '/movies');
 
 
   useEffect(() => {
-    getMoviesDetails(movieId).then(info => {
-      setMovie(info.result);
+    getMoviesDetails(movieId).then(setMovie)
       // console.log(info.result);
-    });
+    
   }, [movieId]);
 
   return (
