@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMovies } from 'services/GetMoviesTrend';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Audio } from 'react-loader-spinner';
 import css from './Home.module.css'
 
@@ -11,7 +11,8 @@ import css from './Home.module.css'
 const Home = () => {
 const location = useLocation();
   const [movies, setMovies] = useState([]);
-   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+   const { movieId } = useParams();
 
   useEffect(() => {
   
@@ -51,7 +52,7 @@ const location = useLocation();
               <li className={css.list} key={id}>
                 <Link
                   className={css.link}
-                  to={`/movies/${title}`}
+                  to={`/movies/${movieId}`}
                   state={{ from: location }}
                 >
                   {original_title}

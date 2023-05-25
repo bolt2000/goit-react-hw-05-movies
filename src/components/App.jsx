@@ -3,8 +3,8 @@ import React from 'react';
 import Home from 'pages/Home';
 import SearchMovie from 'pages/SearchMovie';
 import MovieDetails from 'pages/MovieDetails';
-import { Cast } from 'components/Cast';
-import { Rewievs } from 'components/Reviews';
+import  Cast  from 'components/Cast';
+import  Rewievs  from 'components/Reviews';
 import { Layout } from './Layout';
 
 

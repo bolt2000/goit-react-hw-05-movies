@@ -1,42 +1,39 @@
-
+// import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'd923cfd5f948398665667bae929771df';
 // const PER_PAGE = 12;
 
-export const getMovies = () => {
-  return fetch(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`).then(res =>
-    res.json()
-  );
+export const getMovies = async () => {
+  const res = await fetch(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`);
+  return await res.json();
 };
 
-export const getSearchMovie = (movieId) => {
-  return fetch(
+export const getSearchMovie = async movieId => {
+  const res = await fetch(
     `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${movieId}&page=1&include_adult=false`
-  ).then(res => res.json());
+  );
+  return await res.json();
 };
 
-export const getMoviesDetails = (movieId) => {
-  return fetch(
-    `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US'`
-  ).then(res => res.json());
+export const getMoviesDetails = async movieId => {
+  const res = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
+  return await res.json();
 };
 
+export const getMoviesCredits = async movieId => {
+  const res = await fetch(
+    `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+  );
+  return await res.json();
+};
 
-
-
-
-// export const getMoviesCredits = () => {
-//   return fetch(
-//     `${BASE_URL}/movie/movie_id/credits?api_key=${API_KEY}`
-//   ).then(res => res.json());
-// };
-
-// export const getMoviesReviews = () => {
-//   return fetch(
-//     `${BASE_URL}/movie/movie_id/reviews?api_key=${API_KEY}&language=en-US&page=1?`
-//   ).then(res => res.json());
-// };
+export const getMoviesReviews = async movieId => {
+  const res = await fetch(
+    `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1?`
+  );
+  return await res.json();
+};
 
 // const fetch = require('node-fetch');
 

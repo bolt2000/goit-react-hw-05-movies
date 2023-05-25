@@ -17,8 +17,7 @@ const SearchMovie = () => {
     setMovies([]);
     setIsLoading(true);
 
-    getSearchMovie(movieId).then(movies => {
-      setMovies(movies.results);
+    getSearchMovie(movieId).then(movies => {setMovies(movies.results);
 
       setIsLoading(false);
       // console.log(movieId);
@@ -73,10 +72,10 @@ const SearchMovie = () => {
           {/* <h3>Result search movie</h3> */}
         </form>
         <ul>
-          {movies.map(({ id, original_title, name }) => {
+          {movies.map(({ movie, original_title, name, id}) => {
             return (
-              <li key={id}>
-                <Link to={`${original_title}`} state={{ from: location }}>
+              <li key={movie}>
+                <Link to={`/movies/${movieId}`} state={{ from: location }}>
                   {original_title || name}
                 </Link>
               </li>
