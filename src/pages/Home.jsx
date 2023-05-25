@@ -42,26 +42,22 @@ const location = useLocation();
           wrapperClass
         />
       )}
-      <main>
+      {/* <main> */}
         <h1 className={css.h1}>Top Movies for today</h1>
-        <ul
-          className={css.sample08}
-        >
-          {movies.map(({ id, original_title, title }) => {
-            return (
-              <li className={css.list} key={id}>
-                <Link
-                  className={css.link}
-                  to={`/movies/${movieId}`}
-                  state={{ from: location }}
-                >
-                  {original_title}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </main>
+        <div>
+          <ul className={css.older}>
+            {movies.map(({ id, original_title, title }) => {
+              return (
+                <li key={id}>
+                  <Link to={`/movies/${movieId}`} state={{ from: location }}>
+                    {original_title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      {/* </main> */}
     </>
   );
 

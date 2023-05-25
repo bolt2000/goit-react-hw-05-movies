@@ -9,23 +9,34 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   // console.log(location);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [movie, setMovie] = useState([]);
   const IMG_PATH = 'https://image.tmdb.org/t/p/original';
   const backLinkLocation = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
-    if (!movieId) {
-      return;
-    }
+    // if (!movieId) {
+    //   return;
+    // }
 
-    getMoviesDetails(movieId).then(setMovie).catch(error => {setError(error.message)});
-    console.log(setMovie(movieId));
+    // getMoviesDetails().then(setMovie);
+    // console.log(movieId);
+  
+      getMoviesDetails(movieId)
+        .then(res => setMovie(res))
+ 
 
-    if (error) {
-      return <h1>Don't play with URL please. It's not funny</h1>;
-    }
-  }, [error, movieId]);
+    // getMoviesDetails(id)
+    //   .then(setMovie())
+    //   .catch(error => {
+    //     setError(error.message);
+    //   });
+    // console.log(setMovie);
+
+    // if (error) {
+    //   return <h1>Don't play with URL please. It's not funny</h1>;
+    // }
+  }, [movieId]);
 
   // const {
   //   original_title,
@@ -41,7 +52,7 @@ const MovieDetails = () => {
     <>
       {/* {!movieId && <Navigate to='/'/>} */}
       <Link to={backLinkLocation.current}>Go back</Link>
-      <h2>{movie.original_title}</h2>
+      <h2>{movieId.original_title}</h2>
       <img
         src={`${IMG_PATH}/${movie.poster_path}`}
         alt={movie.original_title}
