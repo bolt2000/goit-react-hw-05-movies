@@ -7,9 +7,9 @@ const Rewievs = () => {
   const [review, setReview] = useState([]);
 
   useEffect(() => {
-    getMoviesReviews().then(review => {
+    getMoviesReviews(movieId).then(review => {
       setReview(review.results);
-      // console.log(review.results);
+      console.log(review.results);
     });
   }, [movieId]);
 

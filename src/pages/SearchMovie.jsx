@@ -75,7 +75,7 @@ const SearchMovie = () => {
           {movies.map(({ movie, original_title, name, id}) => {
             return (
               <li key={movie}>
-                <Link to={`/movies/${movieId}`} state={{ from: location }}>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
                   {original_title || name}
                 </Link>
               </li>

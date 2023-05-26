@@ -1,4 +1,3 @@
-// import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'd923cfd5f948398665667bae929771df';
@@ -18,7 +17,7 @@ export const getSearchMovie = async movieId => {
 
 export const getMoviesDetails = async movieId => {
   const res = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
-  return await res.json(res.data);
+  return await res.json(res);
 };
 
 export const getMoviesCredits = async movieId => {
@@ -34,24 +33,3 @@ export const getMoviesReviews = async movieId => {
   );
   return await res.json();
 };
-
-// const fetch = require('node-fetch');
-
-// const url =
-//   'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
-// const options = { method: 'GET', headers: { accept: 'application/json' } };
-
-// fetch(url, options)
-//   .then(res => res.json())
-//   .then(json => console.log(json))
-//   .catch(err => console.error('error:' + err));
-
-// const fetch = require('node-fetch');
-
-// const url = 'https://api.themoviedb.org/3/trending/all/day?language=en-US';
-// const options = { method: 'GET', headers: { accept: 'application/json' } };
-
-// fetch(url, options)
-//   .then(res => res.json())
-//   .then(json => console.log(json))
-//   .catch(err => console.error('error:' + err));
