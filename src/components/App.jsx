@@ -3,15 +3,11 @@ import React from 'react';
 import Home from 'pages/Home';
 import SearchMovie from 'pages/SearchMovie';
 import MovieDetails from 'pages/MovieDetails';
-import  Cast  from 'components/Cast';
+import Cast from 'components/Cast';
 import Reviews from 'components/Reviews';
 import { Layout } from './Layout';
 
-
 export const App = () => {
-
-
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

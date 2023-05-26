@@ -54,7 +54,7 @@ const MovieDetails = () => {
         />
         <div className={css.fl2}>
           <h2>
-            {original_title} ({release_date})
+            {original_title} ({parseFloat(release_date)})
           </h2>
           <p>{`User score: ${Math.round(vote_average * 10)}%`}</p>
           <h3>Overview</h3>

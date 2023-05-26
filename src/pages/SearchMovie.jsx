@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { getSearchMovie } from 'services/GetMoviesTrend';
-import { Audio } from 'react-loader-spinner';
 
-const SearchMovie = () => {
-  const location = useLocation();
+import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getSearchMovie } from 'services/GetMoviesTrend';
+import MoviesList from 'components/MovieList';
+import Loading from 'components/Loading';
+
+const SearchMovie = ({ onSubmit }) => {
+  // const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,10 +20,10 @@ const SearchMovie = () => {
     setMovies([]);
     setIsLoading(true);
 
-    getSearchMovie(movieId).then(movies => {setMovies(movies.results);
+    getSearchMovie(movieId).then(movies => {
+      setMovies(movies.results);
 
       setIsLoading(false);
-      // console.log(movieId);
     });
   }, [movieId]);
 
@@ -31,31 +34,23 @@ const SearchMovie = () => {
       return setSearchParams({});
     }
     setSearchParams({ movieId: movieIdValue });
-    // console.log(movieIdValue);
   };
+
+
+  //   const onChange = e => {
+  //     setMovies(e.target.value);
+  //   };
 
   // const hendleSubmit = e => {
   //   e.preventDefault();
-  //   setMovies(movieId);
-  //   setMovies('');
+  //   onSubmit(movies);
+    
   // };
 
   // const visibleMovies = movies.filter(movie => movie.includes(movieId));
 
   return (
     <>
-      {isLoading && (
-        <Audio
-          className="true"
-          height="80"
-          width="80"
-          radius="9"
-          color="green"
-          ariaLabel="loading"
-          wrapperStyle
-          wrapperClass
-        />
-      )}
       <div>
         <form
           // onSubmit={hendleSubmit}
@@ -64,27 +59,26 @@ const SearchMovie = () => {
             value={movieId}
             type="text"
             onChange={updateQueryString}
-            // onSubmit={updateQueryString}
             placeholder="Search movie"
             autoComplete="off"
           />
-          <button type="Submit">--Search--</button>
+          <button type="Submit" children="Search">
+            --Search--
+          </button>
           {/* <h3>Result search movie</h3> */}
         </form>
-        <ul>
-          {movies.map(({ movie, original_title, name, id}) => {
-            return (
-              <li key={movie}>
-                <Link to={`/movies/${id}`} state={{ from: location }}>
-                  {original_title || name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+
+        {isLoading && <Loading />}
+
+        <MoviesList movies={movies} />
       </div>
     </>
   );
+};
+
+
+SearchMovie.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchMovie;
