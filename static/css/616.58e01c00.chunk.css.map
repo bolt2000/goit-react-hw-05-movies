@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/616.58e01c00.chunk.css","mappings":"AAAA,yBAGI,YAAa,CACb,gBACJ,CAGA,yBACA,kBAGA","sources":["pages/MovieDetails.module.css"],"sourcesContent":[".fl {\n\n\n    display: flex;\n    padding-top: 10px;\n}\n\n\n.fl2 {\npadding: 0 0 0 20px;\n\n \n}"],"names":[],"sourceRoot":""}
