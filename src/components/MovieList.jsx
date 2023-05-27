@@ -10,18 +10,9 @@ const MoviesList = ({ movies }) => {
     <>
       <ul className={css.older}>
         {movies.map(
-          ({ id, original_title, title, poster_path, original_name }) => {
+          ({ id, original_title, title }) => {
             return (
               <li key={id}>
-                {/* <img
-                  src={
-                    poster_path
-                      ? `https://image.tmdb.org/t/p/original${poster_path}`
-                      : 'https://i.postimg.cc/g2dNFPgn/Placeholder.png'
-                  }
-                  alt={title || original_title || original_name}
-                  width="240px"
-                /> */}
                 <Link to={`/movies/${id}`} state={{ from: location }}>
                   {original_title || title}
                 </Link>

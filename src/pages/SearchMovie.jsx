@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import css from './Home.module.css'
 import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getSearchMovie } from 'services/GetMoviesTrend';
@@ -53,18 +53,20 @@ const SearchMovie = ({ onSubmit }) => {
     <>
       <div>
         <form
+          className={css.form}
           // onSubmit={hendleSubmit}
         >
           <input
+            className={css.input}
             value={movieId}
             type="text"
             onChange={updateQueryString}
             placeholder="Search movie"
             autoComplete="off"
           />
-          <button type="Submit" children="Search">
+          {/* <button type="Submit" children="Search">
             --Search--
-          </button>
+          </button> */}
           {/* <h3>Result search movie</h3> */}
         </form>
 

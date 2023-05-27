@@ -4,7 +4,6 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getMoviesDetails } from 'services/GetMoviesTrend';
 import css from './MovieDetails.module.css';
-// import { Audio } from 'react-loader-spinner';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -27,9 +26,9 @@ const MovieDetails = () => {
 
     console.log(movieId);
 
-    // if (error) {
-    //   return <h1>Don't play with URL please. It's not funny</h1>;
-    // }
+    if (error) {
+      return <h1>Don't play with URL please. It's not funny</h1>;
+    }
   }, [error, movieId]);
 
   const {
@@ -38,13 +37,14 @@ const MovieDetails = () => {
     genres,
     release_date,
     vote_average,
-    // vote_count,
     poster_path,
   } = movie;
 
   return (
     <>
-      <Link to={backLinkLocation.current}>Go back</Link>
+      <Link className={css.btn} to={backLinkLocation.current}>
+        Go back
+      </Link>
 
       <div className={css.fl}>
         <img
