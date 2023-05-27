@@ -13,7 +13,6 @@ import { Layout } from './Layout';
 const Home = lazy(() => import('../pages/Home'));
 const SearchMovie = lazy(() => import('../pages/SearchMovie'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
-// const Reviews = lazy(() => import('../components/Reviews'));
 
 
 const Cast = lazy(() => import('../components/Cast'));
