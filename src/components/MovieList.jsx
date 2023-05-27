@@ -9,17 +9,15 @@ const MoviesList = ({ movies }) => {
   return (
     <>
       <ul className={css.older}>
-        {movies.map(
-          ({ id, original_title, title }) => {
-            return (
-              <li key={id}>
-                <Link to={`/movies/${id}`} state={{ from: location }}>
-                  {original_title || title}
-                </Link>
-              </li>
-            );
-          }
-        )}
+        {movies.map(({ id, original_title, title }) => {
+          return (
+            <li key={id}>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                {original_title || title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </>
   );

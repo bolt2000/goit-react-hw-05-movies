@@ -6,7 +6,6 @@ const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
-  
   useEffect(() => {
     getMoviesCredits(movieId).then(res => {
       setCast(res.cast);
